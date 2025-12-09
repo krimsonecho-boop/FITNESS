@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Calorie Calculator & TDEE Calculator | Daily Calorie Needs (BeneFit Tools)</title>
+
+<meta name="description" content="Use our Calorie Calculator (TDEE Calculator) to find your daily calorie needs for weight loss, muscle gain, or maintenance. Fast, accurate, and beginner-friendly.">
+
+<meta name="keywords" content="calorie calculator, TDEE calculator, daily calorie needs, fitness calculator, metabolism calculator, BMR calculator, weight loss calories, gain muscle calories">
+
+<!-- SEO STRUCTURED DATA (SCHEMA) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calorie Calculator - BeneFit Tools",
+  "description": "Accurate calorie (TDEE) calculator helping you determine daily calorie needs for weight loss, muscle gain, or maintenance.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Web",
+  "url": "https://yourwebsite.com/page1.html"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root { --accent: #c40000; }
+
+  body {
+    margin: 0; 
+    font-family: 'Poppins', sans-serif;
+    background: #0d0d0d; 
+    color: white;
+  }
+
+  header {
+    background: #1a1a1a;
+    padding: 20px;
+    border-bottom: 3px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #leftSection {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  #logoImg {
+    width: clamp(40px, 6vw, 70px);
+    height: auto;
+    object-fit: contain;
+  }
+
+  #homeTitle {
+    margin: 0;
+    font-size: clamp(20px, 5vw, 28px);
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #homeTitle:hover { opacity: 0.7; }
+
+  #colorBtn {
+    background: var(--accent);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+
+  #colorBtn:hover { transform: scale(1.05); }
+
+  nav {
+    background: #111;
+    padding: 15px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  nav a {
+    background: var(--accent);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+
+  nav a:hover { transform: scale(1.05); }
+
+  .ad-zone {
+    width: 100%;
+    max-width: 1000px;
+    height: 120px;
+    background: #222;
+    border: 2px dashed var(--accent);
+    margin: 20px auto;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    width: min(90%, 800px);
+    margin: 35px auto;
+  }
+
+  label { display: block; margin: 12px 0 5px; font-weight: 600; }
+
+  input, select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 10px;
+    background: #1a1a1a;
+    color: white;
+  }
+
+  #calcBtn {
+    width: 100%;
+    padding: 14px;
+    background: var(--accent);
+    color: white;
+    border-radius: 12px;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.2s;
+  }
+
+  #calcBtn:hover { transform: scale(1.03); }
+
+  #resultBox {
+    margin-top: 25px;
+    background: #1a1a1a;
+    padding: 18px;
+    border-radius: 12px;
+    border-left: 5px solid var(--accent);
+  }
+</style>
+
+</head>
+<body>
+
+<header>
+  <div id="leftSection">
+    <img id="logoImg" src="logo.png" alt="BeneFit Tools Logo">
+    <a id="homeTitle" href="index.html">BeneFit Tools</a>
+  </div>
+  <button id="colorBtn" onclick="changeColor()">Change Color</button>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="page1.html">Calorie Calculator</a>
+  <a href="page2.html">Page 2</a>
+  <a href="page3.html">Page 3</a>
+  <a href="page4.html">Page 4</a>
+  <a href="page5.html">Page 5</a>
+</nav>
+
+<!-- TOP AD -->
+<div class="ad-zone">
+  <div style="color:#fff;font-family:Arial;">TEST AD — 728x90</div>
+</div>
+
+<div class="container">
+
+  <h1>Calorie Calculator (TDEE)</h1>
+  <p>This **Calorie Calculator** uses proven formulas to calculate your **TDEE (Total Daily Energy Expenditure)** and show how many calories you need to maintain, lose, or gain weight.</p>
+
+  <!-- ================= FORM ================= -->
+  <label>Age (years)</label>
+  <input type="number" id="age" placeholder="Ex: 25">
+
+  <label>Sex</label>
+  <select id="sex">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+
+  <label>Height (cm)</label>
+  <input type="number" id="height" placeholder="Ex: 175">
+
+  <label>Weight (kg)</label>
+  <input type="number" id="weight" placeholder="Ex: 70">
+
+  <label>Activity Level</label>
+  <select id="activity">
+    <option value="1.2">Sedentary</option>
+    <option value="1.375">Light Activity</option>
+    <option value="1.55">Moderate Activity</option>
+    <option value="1.725">Heavy Activity</option>
+    <option value="1.9">Athlete</option>
+  </select>
+
+  <button id="calcBtn" onclick="calcTDEE()">Calculate TDEE</button>
+
+  <!-- RESULT BOX -->
+  <div id="resultBox" style="display:none;">
+    <h2>Your Daily Calories</h2>
+    <p id="maintain"></p>
+    <p id="lose"></p>
+    <p id="gain"></p>
+  </div>
+
+  <!-- MID AD -->
+  <div class="ad-zone">
+    <div style="color:#fff;font-family:Arial;">TEST AD — 728x90</div>
+  </div>
+
+</div>
+
+<!-- BOTTOM AD -->
+<div class="ad-zone">
+  <div style="color:#fff;font-family:Arial;">TEST AD — 728x90</div>
+</div>
+
+<script>
+  const colors = ["#c40000", "#0077ff", "#00c46b", "#8f00ff", "#ff7b00"];
+  let idx = 0;
+
+  function changeColor() {
+    idx = (idx + 1) % colors.length;
+    document.documentElement.style.setProperty("--accent", colors[idx]);
+  }
+
+  function calcTDEE() {
+    const age = +document.getElementById("age").value;
+    const sex = document.getElementById("sex").value;
+    const height = +document.getElementById("height").value;
+    const weight = +document.getElementById("weight").value;
+    const activity = +document.getElementById("activity").value;
+
+    if (!age || !height || !weight) {
+      alert("Please fill all fields.");
+      return;
+    }
+
+    // Mifflin-St Jeor Formula
+    let BMR = (10 * weight) + (6.25 * height) - (5 * age);
+    if (sex === "male") BMR += 5;
+    else BMR -= 161;
+
+    const TDEE = Math.round(BMR * activity);
+
+    document.getElementById("maintain").innerText = "Maintain Weight: " + TDEE + " kcal/day";
+    document.getElementById("lose").innerText = "Lose Weight: " + (TDEE - 400) + " kcal/day";
+    document.getElementById("gain").innerText = "Gain Weight: " + (TDEE + 300) + " kcal/day";
+
+    document.getElementById("resultBox").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
